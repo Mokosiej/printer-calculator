@@ -16,7 +16,7 @@ public class Main {
 
         System.out.println("Выберите тип вывода результата: 1 - Консоль, 2 - Файл");
         int choice = scanner.nextInt();
-        scanner.nextLine(); // consume the newline character
+        scanner.nextLine();
 
         Printer printer;
         if (choice == 1) {
@@ -35,7 +35,7 @@ public class Main {
         stringParser.parse();
         scanner.close();
 
-        // Display the history of operations
+
         mathCalculator.getHistory().forEach(System.out::println);
     }
 }
