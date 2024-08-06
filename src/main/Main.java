@@ -5,6 +5,7 @@ import parser.StringParser;
 import printer.ConsolePrinter;
 import printer.FilePrinter;
 import printer.Printer;
+import history.History;
 
 import java.util.Scanner;
 
@@ -15,7 +16,7 @@ public class Main {
 
         System.out.println("Выберите тип вывода результата: 1 - Консоль, 2 - Файл");
         int choice = scanner.nextInt();
-        scanner.nextLine();
+        scanner.nextLine(); // consume the newline character
 
         Printer printer;
         if (choice == 1) {
@@ -27,13 +28,14 @@ public class Main {
             printer = new ConsolePrinter();
         }
 
-        MathCalculator mathCalculator = new MathCalculator(printer);
+        History history = new History();
+        MathCalculator mathCalculator = new MathCalculator(printer, history);
         StringParser stringParser = new StringParser(mathCalculator, scanner);
 
         stringParser.parse();
         scanner.close();
 
-
+        // Display the history of operations
         mathCalculator.getHistory().forEach(System.out::println);
     }
 }
